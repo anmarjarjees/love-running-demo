@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- 
+        Using the link to fontawesome to use its icons (instead of downloading the icons)
+        
+        NOTE:
+        The order is important, we need to link to Font Awesome styles before our custom css file.
+        So the icon styles will be read into memory by the browser first, 
+        then we can then apply any custom styling to the icons in our local CSS file
+     -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+        integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+    <title>Love Running</title>
+</head>
+
+<body>
+    <!-- 
+        Using HTML5 Symantec Elements
+        Header Element: usually for the site logo and the main navigation
+     -->
+    <header>
+        <!-- This a element contains the site logo that always takes the user to the home page: -->
+        <a href="index.html">
+            <h2 id="logo">Love Running</h2>
+        </a>
+        <!-- 
+            Creating the main navigation:
+            This let's search engines and other developers know that these hyperlinks
+            are intended specifically for site navigation, they are not links to external resources.
+         -->
+        <nav>
+            <!-- 
+                An unordered list element is conventionally used to group links into a navigation menu.
+                with id="menu" to be uniquely styled later
+             -->
+            <ul id="menu">
+                <!-- 
+                    Adding three list items for the three HTML pages:
+                    
+                    NOTE: 
+                    Because we used the property float: right in the CSS
+                    so the order of the pages: Home Gallery Sign UP
+                    will be reversed so we need to reverse (reorder) them in our HTML code
+                    so it will be displayed properly when the CSS is applied in the browser
+                    and this is just a quick solution:                
+                -->
+                <li>
+                    <a href="signup.html">Sign Up</a>
+                </li>
+                <li>
+                    <a href="gallery.html">Gallery</a>
+                </li>
+                <li>
+                    <a class="active" href="index.html">Home</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- 
+        This home page contains 3 main sections:
+        - First One for the main image with id="hero-outer"
+        - Second One for the club ethos with id="club-ethos"
+        - Third one for the meeting information with id="times"
+    -->
+
+    <!-- 
+        section#hero-outer Contains the banner image with its captions
+     -->
+    <section id="hero-outer">
+        <!-- div#hero-image as container for the banner image -->
+        <div id="hero-image">
+        </div>
+        <!-- Adding the box for the text -->
+        <div id="cover-text">
+            <h2>Love Running</h2>
+            <h3>Dublin Docklands & Phoenix Park</h3>
+        </div>
+    </section>
+
+    <!-- 
+        section#club-ethos: the content below the hero image
+        This section contains three div elements of equal width in CSS:
+        - the left div (The text on the left side): the titles "Feel Healthy" and "Feel Free" titles and their paragraphs
+        - the right div (The text on the right side): the titles "Get Social" and "Feel Strong" titles and their paragraphs
+        - the center div: for holding the circular image
+     -->
+    <section id="club-ethos">
+        <h2 id="welcome">Why Love Running with us?</h2>
+
+        <div id="left-about">
+            <!-- 
+                Give this div a class value of "left-about-heading" instead of id to be used two times
+             -->
+            <div class="left-about-heading">
+                <!-- 
+                    Using Font Awesome Icon that will be treated as text:
+
+                    We copied this line of code: <i class="fas fa-heartbeat"></i>
+                    from Font Awesome site based on its instructions:
+                    
+                    1. search for the free icons, put your keyword:
+                    https://fontawesome.com/icons?d=gallery&q=heart&m=free
+
+                    2. Click the icon you want, then the button "Start Using This Icon" then copy the code
+
+                    Notice that:
+                    - the syntax uses <i> element for italic, in HTML5 <i> element is no longer recommended
+                    and has been replaced by <em> for emphasis to make it italic as symantec element 
+                    so no one should use this element and that's why Font Awesome uses this element to override it by applying its own custom styles
+                    - we added one white space between the text and the icon to look better
+                    - the class name is "fas" for Font Awesome Solid Style
+                 -->
+                <h2>Feel Healthy <i class="fas fa-heartbeat"></i></h2>
+                <hr>
+                <p>
+                    Since it improves aerobic fitness, running is a great way to help improve your cardiovascular
+                    health. Plus, it burns calories and can build strength.
+                </p>
+            </div>
+            <div class="left-about-heading">
+                <h2>Feel Free <i class="fab fa-fly"></i></h2>
+                <hr>
+                <p>
+                    Physical exercise, running included, is known to release endorphins in the brain. Endorphins make
+                    you more energetic, more awake and, yes, happier..
+                </p>
+            </div>
+        </div>
+
+        <div id="right-about">
+            <!-- 
+                Again, give this div a class of "right-about-heading" value instead of id to be used two times
+             -->
+            <div class="right-about-heading">
+                <h2>Get Social <i class="fas fa-globe"></i></h2>
+                <hr>
+                <p>
+                    When we run with others, we can run farther and faster more easily. Social running can pull you out
+                    of a running funk or low mood, inspire you to try new events
+                </p>
+            </div>
+            <div class="right-about-heading">
+                <h2>Feel Strong <i class="fas fa-dumbbell"></i></h2>
+                <hr>
+                <p>
+                    Running strengthens your heart by pumping blood
+                    more effectively through your body.
+                </p>
+            </div>
+        </div>
+
+        <div id="center-about">
+            <div id="circle-container">
+                <div id="circle-cover-bg">
+                    <!-- Our image will be placed here with css background property -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+        section#itmes: for meeting information places:
+        - The section contains 5 div elements for 5 different times and places
+        - One single background image will run behind all the 5 divs
+     -->
+    <section id="times">
+        <div>
+            <!-- h2 for the main title -->
+            <h2>Urban <i class="fas fa-city"></i></h2>
+            <!-- then h3 for the details -->
+            <h3>Monday</h3>
+            <!-- The distance is 5 kilometers -->
+            <h3>5K</h3>
+            <h3>The Marker Hotel</h3>
+            <h3>18:30</h3>
+        </div>
+        <div>
+            <h2>Trail <i class="fas fa-tree"></i></h2>
+            <h3>Wednesday</h3>
+            <h3>10K</h3>
+            <h3>The Phoenix Park</h3>
+            <h3>18:30</h3>
+        </div>
+        <div>
+            <h2>Urban <i class="fas fa-city"></i></h2>
+            <h3>Friday</h3>
+            <h3>5K</h3>
+            <h3>The Marker Hotel</h3>
+            <h3>18:30</h3>
+        </div>
+        <div>
+            <h2>Trail <i class="fas fa-tree"></i></h2>
+            <h3>Saturday</h3>
+            <h3>10K</h3>
+            <h3>The Phoenix Park</h3>
+            <h3>09:30</h3>
+        </div>
+        <div>
+            <h2>Coffee <i class="fas fa-mug-hot"></i></h2>
+            <h3>Sunday</h3>
+            <!-- 0K no running on Sunday :-) -->
+            <h3>0K</h3>
+            <h3>The Marker Hotel</h3>
+            <h3>11:30</h3>
+        </div>
+    </section>
+
+    <!-- 
+      The footer element, like the header, a footer contains content
+      common to all pages on a site. 
+      Footer elements can be copyright notices, additional documentation and references to external resources.  
+     -->
+    <footer>
+        <!-- 
+            As we did with our navigation, we can include these links using the unordered list
+         -->
+        <ul class="social-networks">
+            <!-- 
+                Notice that below the class name is "fab" for Font Awesome Brands Style
+             -->
+            <li><a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter-square"></i></a></li>
+            <li><a href="https://www.youtube.com" target="_blank"><i class="fab fa-youtube"></i></a></li>
+            <li><a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a></li>
+        </ul>
+        <div class="footnote">
+            &copy; 2020 -
+            <a href="https://codeinstitute.net/" title="Code Institute- Full-Stack Diploma in Software Development"
+                target="_blank">
+                Code Institute
+            </a> -
+
+            Instructor:
+            <a href="https://anmarjarjees.github.io/" title="Anmar Jarjees GitHub Website" target="_blank">
+                Anmar Jarjees
+            </a>,
+
+            <a href="https://canadianbusinesscollege.com/" title="Canadian Business College - Toronto, Canada"
+                target="_blank">Canadian Business College
+            </a>
+        </div>
+    </footer>
+</body>
+
+</html>

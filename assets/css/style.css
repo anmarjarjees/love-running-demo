@@ -1,0 +1,1069 @@
+/* 
+CSS File is filled with comments for Learning Demonstration 
+*/
+
+/* 
+Notice that below we used Google Embed Font section with "@import" not "link"
+to embed/import the font inside the CSS file to be available for every page that calls this file,
+instead of embedding/linking the font to all the HTML pages
+
+Remember to select all your fonts then you can import them all at once using one import statement:
+
+Below we are importing these two fonts: "Lato" and "Oswald"
+
+import statements should always go to the top of our stylesheet
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Oswald&display=swap');
+
+/* 
+the old code:
+@import url('https://fonts.googleapis.com/css?family=Oswald|Lato:300'); */
+
+/* 
+Because of the specificity, we start with the more general rules then moving to the more specific ones
+
+Reset the margin and padding for all the elements to 0 
+plus add no border (border: 0 or we can use border: none)
+using the wildcard selector
+*/
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    /* 
+Set the default font to "Lato" for all the text inside the HTML body
+if the Lato font cannot be embedded, 
+the browser can load any sans-serif font that is available
+*/
+    font-family: Lato, sans-serif;
+    /* 
+we can write the full code: #777777
+but since it's the same number we can summarize it to: #777
+*/
+    color: #777777;
+}
+
+p {
+    font-size: 90%;
+}
+
+h2 {
+    font-family: Oswald, sans-serif;
+    /* make all text in upper case with text-transform property */
+    text-transform: uppercase;
+    /* adding spaces between the letters */
+    letter-spacing: 4px;
+    color: #555555;
+
+}
+
+/*header*/
+
+ul {
+    font-size: 110%;
+    list-style-type: none;
+    letter-spacing: 4px;
+}
+
+/* 
+Styling the logo element with id="logo" which is the h2 element inside the a element in our HTML File
+*/
+#logo {
+    /* to move the logo to the left */
+    float: left;
+    /* 
+Change the h2 font size (for the logo) to be larger than the default browser size by 280%
+*/
+    font-size: 280%;
+    text-transform: uppercase;
+    /* 30px margin on the left to have some space between the logo "Love Running" and the left side of the browser */
+    margin-left: 30px;
+}
+
+/* 
+We need horizontally align our header elements. 
+The font size for logo "The website name" and the ul#menu (list items) is not the same
+So these two elements, <h2> and <ul> are not horizontally aligned in the header.
+We can fix this by setting a matching line height for both the logo and the menu
+components.
+
+- Styling the element with id="logo" => <h2> inside <a> inside <header>
+- and the element with id="menu" => <ul> inside <nav>
+*/
+h2#logo,
+ul#menu {
+    /* 
+- By default any text will center itself within its line-height:  
+- We need to pick a value that comfortably accommodate both the logo and menu
+*/
+    line-height: 75px;
+
+    /* 
+    NOTE:
+    To provide visual balance for the website look, 
+    our layout will be presented in multiples of 75px for the height property.
+    As you'll see sizes of 150, 300, 600, 900 and 1200 pixels 
+    throughout the design for different elements in the css
+    */
+}
+
+
+/* 
+- Styling the ul element with id="menu" => <ul> inside <nav>
+<ul id="menu">
+*/
+ul#menu {
+    /* enlarge the font by 10% over the 100% so navigation items will stand out in the header element */
+    font-size: 110%;
+    /* remove the bullets style */
+    list-style-type: none;
+    /* add spacing for the text (list items) in the menu */
+    letter-spacing: 4px;
+}
+
+/* 
+Styling the li element inside ul of id="menu" inside nav
+*/
+nav ul#menu li {
+    /* 
+Remember that <li> is a block-level element, we want them to be displayed in one line 
+and floating to the right side of the page as our logo will be on the left side
+*/
+    float: right;
+    /* 
+setting the right margin for each list item to give it some space from the right
+*/
+    margin-right: 30px;
+}
+
+/* 
+Styling the a element inside ul with id="menu" inside the nav element
+The order of styling:
+- Link and Visited (if needed)
+- Hover and Active (if needed)
+Please refer to my in-class code for for details
+*/
+nav ul#menu a {
+    /* Remove the default underline style for links */
+    text-decoration: none;
+    /* 
+using the value inherit, will make this element inherits the color 
+from the closest parent that has the color set. 
+In this case it's the <body> element as we only set the color for body (root container of a)
+which is color:#777777;
+*/
+    color: inherit;
+}
+
+/* 
+Styling the hover effect using a "pseudo-class"
+The "pseudo-classes" allow you to change the state of an HTML element. 
+In our case we want to change the state of any hyperlink that is a child of "menu"
+
+the colon ":" after the anchor selector is followed by "hover" pseudo-class reference
+*/
+nav ul#menu a:hover {
+    border-bottom: 1px solid #777777;
+}
+
+/* 
+Using a custom class "active" for the current active "open" page:
+*/
+.active {
+    border-bottom: 1px solid #777777;
+}
+
+/*end header*/
+
+/* 
+section#hero-outer which the container of:
+- the div#hero-image => has the image as a background
+- the div#cover-text => the box with the image caption
+*/
+section#hero-outer {
+    /* Set the main container (section) to be the same height of the image */
+    height: 600px;
+    /* stretch the width to 100% based on its container also (the body element) */
+    width: 100%;
+    /* 
+    We need to set the overflow to hidden as we need to apply CSS3 animation
+    to enlarge (resize) the image and we don't want the image to go beyond its container
+
+    Remember that we used this property overlfow: hidden 
+    as another alternative solution for clear: both
+    */
+    overflow: hidden;
+    /* 
+    we need to specifically set its position to relative 
+    so that the child containers that have absolute position value can set their absolute position relative to it.
+    */
+    position: relative;
+}
+
+/*hero image */
+/* 
+The container for the banner image
+*/
+div#hero-image {
+    /* set the height to 600 which is the height of the image */
+    height: 600px;
+    /*  
+    make the image responsive to fill the entire width of its parent
+    */
+    width: 100%;
+    /* 
+    using the background shorthand property to set three values:
+    background-image: 
+    background-repeat: 
+    background-position: 
+
+    NOTE: Notice the url path is relative to our website root folder
+    */
+    background: url(../img/main-image.png) no-repeat center center;
+
+    /* 
+    CSS Animations:
+    CSS allows animation of HTML elements without using JavaScript or Flash!
+
+    We want the animation to be run when the "div#hero-image" style rule is being applied
+    Remember that we created our animation in the code after
+    */
+    /* 
+    calling our animation name:
+    */
+    animation-name: hero-zoom;
+    /* 
+    set the animation duration to 5 seconds
+    it will take 5 seconds for the image to scale up by 10%:
+    */
+    animation-duration: 5s;
+    
+    /*
+    animation-fill-mode: forwards
+    Let the <div> element retain the style values from the last keyframe when the animation ends
+    in our case it will be 110%
+
+    The resulting effect is that the image zooms in and stays there at that size
+    */
+    animation-fill-mode: forwards;
+}
+
+/* 
+To use CSS animation, you must first specify some keyframes for the animation.
+Keyframes hold what styles the element will have at certain times.
+
+The syntax:
+@keyframes animation-name
+
+Below is like a function to create the animation
+the next step will be running the animation (like calling our function)
+We will increase the main image (the hero image) by 10% more:
+*/
+@keyframes hero-zoom {
+    /* We set the initial state of the animation using: from { } */
+    from {
+        /* 
+        CSS 2D Transforms: allow you to move, rotate, scale, and skew elements.
+        The scale() Method:
+        The scale() method increases or decreases the size of an element 
+        (according to the parameters given for the width and height).
+
+        The value: scale(W,H) or scale(value) for both width and height
+
+        The following example increases the <div> element to be two times of its original width, and three times of its original height:
+
+        Below we set the image to be 100% of its size (the actual size) 
+        */
+        transform: scale(1);
+    }
+
+    /* We set the final state of the animation using: to { } */
+    to {
+        /* 
+        Below we set the image to be 110% of its original size
+        */
+        transform: scale(1.1);
+    }
+
+    /* We can also set the intermediate state */
+}
+
+/* 
+add white color to the text 
+inside the div#cover-text + override the previous h2 color 
+*/
+div#cover-text,
+div#cover-text h2 {
+    color: #ffffff;
+}
+
+/* styling div#cover-text that appears above the image */
+div#cover-text {
+
+    font-size: 130%;
+    font-family: Oswald, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    /* Set a fixed width and height for div */
+    width: 300px;
+    height: 200px;
+
+    padding-top: 40px;
+    padding-left: 10px;
+
+    /* 
+    Using RGBA:
+    CSS3 rgba (a alpha)
+    a is for the opacity of the element 
+    a = alpha value: 0.0 and 1.0 0 ==> completely transparent 1 ==> is the full color (no transparent) 
+    
+    Examples: 
+    0.5 is 50% opacity 
+    0.15 is 15% opacity
+    */
+    background-color: rgba(241, 109, 107, .7);
+    
+    /* 
+    In order to keep this box (div) within the parent box (div):
+    - The parent div (their container) is positioned relative
+    - This div is positioned absolute to its container
+    */
+    position: absolute;
+    /* 
+    Below are the values to shift this div from the bottom-right corner (sides) of its container
+    */
+    bottom: 30px;
+    right: 150px;
+}
+
+/* 
+Styling section with id="club-ethos"
+the content in the middle of the page: left div, right div, and center div
+
+For testing, you can give each div a contrasting background color to see their layout clearly in the browser window
+*/
+section#club-ethos {
+    /* 
+    In keeping with our design layout, give it a height of 600px as the main hero image of the page
+    */
+    height: 600px;
+    /* margin-top: 20px; */
+}
+
+/******************** club ethos 3 divs: left, right, and center ************************/
+#left-about {
+    /* 
+    The width is set to 33% which is a third of the screen as we have 3 div elements to be layout horizontally
+    */
+    width: 33%;
+    padding-top: 30px;
+    /* floating this div to the left (will disable its block-level feature) */
+    float: left;
+    background-color: lightblue;
+}
+
+#right-about {
+    width: 33%;
+    padding-top: 30px;
+     /* floating this div to the right */
+    float: right;
+    background-color: lightgreen;
+}
+
+#center-about {
+    width: 33%;
+    /* 
+    This div should be in the center but there is NO float: center
+    We need to come up with another way:
+    - Keep the default display feature of this block-level element which is display: block without change
+    - Remember that any block-level element can be centred horizontally using margin auto for left and right side
+    setting the margin (We can set it auto for all sides)
+    */
+    margin: auto;
+    background-color: lightyellow;
+}
+
+hr {
+    border-top: 1px solid #777;
+    width: 100%;
+    /* 5px margin from top and bottom plus 0 margin for left and right */
+    margin: 5px 0;
+}
+
+/* style the two divs inside div#left-about  */
+.left-about-heading {
+    /* 
+    Setting the width to 50% of its parent element with floating right 
+    to give a feeling that the text is surrounding the circular image in the middle (sit beside it)
+    */
+    width: 50%;
+    float: right;
+    /* setting the line height to 20px to make the paragraph easily read */
+    line-height: 20px;
+    /* 
+    We set the two divs to be floating to the right but at the same time we don't want them to sit beside each other!
+    So we can use clear both to make sure that each content block (div) is aligned vertically
+    removing/disable this rule will set the two divs to be aligned horizontally (in one horizontal line)
+     */
+    clear: both;
+    /* 
+    Adding some space between the two divs (the top and the bottom one)
+    */
+    margin-bottom: 50px;
+}
+
+/* style the two divs inside div#right-about  */
+.right-about-heading {
+    /* Repeat the same rules as .left-about-heading */
+    width: 50%;
+    float: left;
+    line-height: 20px;
+    clear: both;
+    margin-bottom: 50px;
+}
+
+/* 
+Styling the text (h2 and p) in the right div to be aligned to the right (instead of the left default alignment)
+Doing this will give the impression of a curve around the center image once it's in place
+*/
+.right-about-heading h2 {
+    text-align: right
+}
+
+.right-about-heading p {
+    text-align: right;
+}
+
+/* .right-about-heading hr {
+    float: right;
+} */
+/******************* end club ethos 3 divs: left, right, and center ************************/
+
+/* 
+Style the h2 with id="welcome" inside section id="club-ethos"
+*/
+h2#welcome {
+    /* padding-top: 30px; */
+    /* 
+    Pushing the heading 20px down from the hero image
+     */
+    margin: 20px 0;
+    font-size: 280%;
+    text-align: center;
+    /* font-family: Oswald;
+    letter-spacing: 3px;
+    color: #555555;
+    */
+}
+
+#circle-container {
+    width: 300px;
+    height: 300px;
+    padding: 30px;
+    border-style: solid;
+
+    /* 
+    Instead of using three rules:
+    * border-color: #cccccc;
+    * border-width: 1px;
+    * border-radius: 50%;
+
+    We can use the shorthand:
+    */
+    border: 1px solid #ccc;
+    /* 
+    To make this div looks like a circle,
+    since it has the same width and height (cube shape)
+    we can make it circle with CSS3 border-radius property value of 50%
+    */
+    border-radius: 50%;
+    /* Center the image's div */
+    margin: 0 auto;    
+}
+
+/* 
+styling the div with id="circle-cover-bg" by adding its background image
+*/
+#circle-cover-bg {
+    background: url(../img/video-mask.png) no-repeat center center;
+    /* we also need to make the background image rounded, so we will use the same rule as its parent element: */
+    border-radius: 50%;
+    /* 
+    Notice that without specifying the height the css background image has no physical height
+    instead of checking the actual height of the image, we can just make it just 100% of its container 
+    */
+    height: 100%;
+    /* position: relative; */
+}
+
+/* section#times*/
+
+section#times {
+    /*
+    Instead of writing 4 rules:  
+    - background-image: url(../img/dublin-city.png);
+    - background-repeat: no-repeat;
+    - background-size: cover;
+    - background-position: center;
+
+    We can combine them into one rule:
+
+    NOTE:
+    We gave the background size the value of "cover" 
+    so that the image will fill the allocated section dimensions when they are applied
+
+    The short hand Syntax:
+    Here are the eight background properties that can be declared using the background shorthand property:
+
+    background-image
+    background-position
+    background-size
+    background-repeat
+    background-attachment
+    background-origin
+    background-clip
+    background-color
+
+    Notice that the value of the background-size has the "/" and it's written just after the the position
+    
+    for more details, you can check this article By William Craig:
+    https://www.webfx.com/blog/web-design/background-css-shorthand/ 
+    */
+    background: url(../img/dublin-city.png) no-repeat center/cover;
+    /* Make the image responsive to stretch in/out based on its container size */
+    width: 100%;
+    /* We need to hide any potential image overflow */
+    overflow: hidden;
+}
+
+/* 
+Style the 4 div elements inside section#times
+*/
+section#times div {
+    color: #fafafa;
+    /* 
+    Set the black background with opacity (alpha) of .6 to make a little transparent
+    */
+    background-color: rgba(0, 0, 0, .6);
+    /* 
+    We have 4 boxes (divs) to be displayed across the page to fill the 100%
+    We can give each one a width of 20% so the total will be 100%
+    But we want to have some margin (clean separation) between the panels (divs)
+    So we can give each one a width of 19% instead of 20%
+    */
+    width: 19%;
+    height: 300px;  
+    /* We want all the 4 divs to be displayed horizontally within the flow of the page: */
+    float: left;
+    /* add padding for top - right - bottom - left */
+    padding: 30px 0 0 10px;
+    text-align: center;
+    /* creating some breathing space between the panels */
+    margin-left: 2px;
+}
+
+#times div h2 {
+    color: #fafafa;
+}
+/* end times */
+
+
+/************* social networks **************/
+/* footer {
+    height: 150px;
+} */
+
+/* 
+styling the ul element inside the footer that has id="social-networks"
+*/
+ul.social-networks {
+    text-align: center;
+}
+
+ul.social-networks li {
+    /* 
+    change the default display from block to inline for the each li
+    the other method that we can also use here is floating the elements
+     */
+    display: inline;
+}
+
+ul.social-networks i {
+    /* 
+    Increase the font-size for all icons (inside i element) to 160%, to make them stand out in the footer area
+    */
+    font-size: 160%;
+    /* 
+    set some margins and padding to separate the icons
+    */
+    margin: 1%;
+    padding: 5%;
+    /* Use the same color to consistent with other text */
+    color: #777;
+}
+/* end social networks */
+
+/* Styling gallery page: */
+
+section#photos {
+    /* 
+    We need to clear both ends (left and right) 
+    to set the section#photos beneath the header
+    */
+    clear: both;
+    /* 
+    NOTE:
+    To prevent vertical gaps between the photos, we need to set the line height to 0
+    */
+    line-height: 0;
+    
+    /* 
+    The CSS3 column-count property specifies the number of columns an element should be divided into
+    The default value is auto which is one column
+    Below we want 4 columns ths section will be evenly divided into 4 columns
+    */
+    column-count: 4;
+    /* 
+    We can also specify how many pixels we need as a gap between the columns:
+    */
+    column-gap: 0px;
+}
+
+/* 
+In order to have all the images displayed and layout nicely with Masonry layout,
+All should have the same width so we can set all the images inside this section to be 100% width
+*/
+section#photos img {
+    width: 100%;
+}
+/* end gallery */
+
+/* ********************** Challenge 2: Sign up Form  ************************/
+/* 
+The code for the first rule of this challenge is given by CI-LMS:
+section.form-section or just: 
+*/
+.form-section {
+    clear: left;
+    background: url("https://codeinstitute.s3.amazonaws.com/FundamentalsProjects/HTML-CSS/formbg.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 900px;
+}
+
+/* 
+Continuing with Challenge 2 for the sing-up form
+Notice that comments below are the challenges instructions:
+
+Adding the rule name ".signup-form"
+*/
+.signup-form {
+    /* Add a top margin of 150 pixels */
+    margin-top: 150px;
+    /* Set the form text color. The value is: #fff */
+    color: #fff;
+    /* set the form background-color. The value is rgba(60, 60, 60, 0.6) */
+    background-color: rgba(60, 60, 60, 0.6);
+    /* Set the maximum width for the form. The value is: 400 pixels */
+    max-width: 400px;
+    /*
+    To ensure that the form maintains it's structural integrity and positioning 
+    across device sizes set its position. The value is: absolute
+    */
+    position: absolute;
+    /*
+    Continue the positioning by setting the form at a responsive position 
+    from the left edge of the screen. The value is: 10 per cent
+    */
+    left: 10%;
+    /*
+    Provide all-round padding for the form elements within the form. 
+    The value is: 30 pixels    
+    */
+    padding: 30px;
+}
+
+/* 
+Styling the form header:
+*/
+/* 
+add style rule that targets the form's child header 
+*/
+form>h2 {
+    /* Make the header text color more visible to the user => The value is: #fafafa */
+    color: #fafafa;
+    /*  
+    Set the bottom margin 
+    to create some space between the header text and the input fields below
+    => The value is: 20 pixels
+    */
+    margin-bottom: 20px;
+}
+
+/* 
+class rule. The rule name is .text-input 
+*/
+.text-input {
+    /* 
+    Ensure the form background color is visible inside the input fields 
+    by setting the input background color. 
+    Use the background property (not background-color). 
+    The value is: transparent
+    */
+    background: transparent;
+
+    /*
+    Ensure the input text color can be seen against the form background. 
+    The value is: #fafafa
+    */
+    color: #fafafa;
+
+    /*
+    Set the width for the input fields. The value is: 100%
+    */
+    width: 100%;
+
+    /*
+    Set the height of the input fields. The value is: 25 pixels
+    */
+    height: 25px;
+
+    /*
+    Set the margins. Use the shorthand syntax. 
+    The values are: Top = 5 pixels , Bottom = 20 pixels
+    */
+    margin: 5px 0 20px 0;
+
+    /*
+    Set the input field border. 
+    Use the shorthand syntax. 
+    The values are: 
+    Border width = 1 pixel,  Border style =  solid,  Border color = #fafafa
+    */
+    border: 1px solid #fafafa;
+
+    /*
+    Set the border radius. The value is: 2 pixels
+    */
+    border-radius: 2px;
+}
+
+/*
+Styling the input hover event
+
+Reuse the .text-input rule and add a hover pseudo-class. 
+*/
+.text-input:hover {
+    /*
+    Set the border color when a user hovers over the personal details input fields. 
+    The value is: #f16c6b
+    */
+    border-color: #f16c6b;
+}
+
+/* 
+Styling the submit button
+dd a corresponding class rule. The rule name is .join-button 
+*/
+.join-button {
+    /* 
+    Create some space between the submit button and the radio buttons above. 
+    Set the top margin. The value is: 20 pixels
+    */
+    margin-top: 20px;
+
+    /*
+    Set the border radius for the button. The value is: 2 pixels
+    */
+    border-radius: 2px;
+
+    /*
+    Set the padding for the button text. Use the shorthand syntax. 
+    The values are: 
+    Top  = 15 pixels,  Right = 32 pixels, Bottom = 15 pixels, Left = 32 pixels
+    */
+    padding: 15px 32px 15px 32px;
+
+    /*
+    Align the button text. The value is: center
+    */
+    text-align: center;
+
+    /*
+    Set the font size. The value is: 100 percent
+    */
+    font-size: 100%;
+
+    /*
+    Set the background color that is in line with color 
+    that appears on the main page The value is: #f16c6b
+    */
+    background-color: #f16c6b;
+
+    /*
+    Ensure the text can be seen against the background color.
+    Set the text color. The value is: #fafafa
+    */
+    color: #fafafa;
+
+    /*
+    Position the button below the radio buttons. 
+    Let's change the display. 
+    The value is: block
+    */
+    display: block;
+}
+
+/*
+Styling the submit hover event
+Reuse the .join-button  rule and add a hover pseudo-class. 
+*/
+.join-button:hover {
+    /*
+    Set a contrasting background color when a user hovers over the button. 
+    The value is: #fafafa
+    */
+    background-color: #fafafa;
+
+    /*
+    Set a contrasting text color when a user hovers over the button. 
+    The value is: #f16c6b
+    */
+    color: #f16c6b;
+}
+
+/* 
+Anmar: my custom class: footnote for the last div
+*/
+.footnote{
+    border-top: 1px solid #c0c0c0;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 0;
+    font-size: 90%;
+    width: 98%;
+    margin: auto;
+}
+
+/***************** The END of "Challenge 2: Sign up Form" *******************/
+
+/************************************************/
+/**************** media queries *****************/
+/************************************************/
+/*
+Using CSS3 Media Queries.
+For more information about the basic of using CSS3 Media Queries,
+refer to my code examples for RWD
+
+NOTE:
+Breakpoints used to be based on universal sizes 
+due to the small number of device sizes on the market
+
+Then with many device sizes and product,
+the shift is towards applying breakpoints that maintain the structural integrity 
+of your site elements at different screen sizes
+*/
+
+/* 
+On Tablet Devices:
+the max width is 1393px is the point where the Desktop layout for the "section#club-ethos"
+becomes distorted and visually compromised
+*/
+@media screen and (max-width: 1393px) {
+
+    section#club-ethos {
+        width: 65%;
+        /*
+ Set the height to 1200px to accommodate the vertical layout and also maintain the site structural ratios.
+        */
+        height: 1200px;
+        /* Center the content (because it's 65% not 100%): */
+        margin: 0 auto;
+    }
+
+    h2#welcome {
+        padding: 30px 0;
+        margin-top: 0;
+    }
+
+    /* 
+    Targeting the three divs inside section#club-ethos
+    the left div for "Feel Healthy" and "Feel Free"
+    the center div for the image
+    the right div for "Get Social" and "Feel Strong"
+    */
+    div#left-about,
+    div#right-about {
+        width: 100%;
+        float: left;
+        /* override any default desktop-level padding by setting it to 0 */
+        padding: 0;
+    }
+
+    div#center-about {
+        /*
+        Send the image in the centre (middle) div to the bottom of the two div elements (Below all text content)
+        by using clear both technique and setting its width to be 100%
+        */
+        clear: both;
+        width: 100%;
+        float: left;
+        /* also clear out any default desktop-level padding by setting it to 0 */
+        padding: 0;
+    }
+
+    /* 
+    Apply the mobile styles to the meeting times div elements:
+    - We apply a single style rule for both tablet and mobile sizes.
+    - By adding our styles to the 1393px width media query 
+      means all viewport at or below this width will have the style applied.
+  
+    Targeting the 5 divs inside section#times:
+    */
+    section#times div {
+        /* 100% for filling the screen width */
+        width: 100%;
+        /* Stack the time divs vertically with clear both */
+        clear: both;
+        /* 
+        Setting the height of each div to 150px to maintain the sizing ratios of the main structural page elements
+        */
+        height: 150px;
+        /* Creating a border separator between each div for better view */
+        /* 
+        Using three rules:
+        border-style: solid;
+        border-bottom-width: 1px;
+        border-bottom-color: #fff; 
+        
+        Or Just the shorthand:
+        */
+        border: 1px solid #fff; /* again using #fff instead of #ffffff */
+        /* also setting the padding to 0 to clear out any unwanted desktop-level padding */
+        padding: 0;
+    }
+
+    hr {
+        display: none;
+    }
+}
+
+/*
+For mobile
+the max width of 943px 
+is the point where the club ethos tablet view becomes too big and cumbersome 
+for a smartphone. 
+*/
+@media screen and (max-width: 943px) {
+
+    ul#menu {
+        /*
+        move the navigation items below and left of our logo.
+        by setting the clear and float
+        */
+        clear: left;
+        float: left;
+        /* 
+        adding some space between the navigation elements and the left edge of the screen
+        */
+        margin-left: 30px;
+        margin-bottom: 20px;
+        /* 
+        set the line-height to 25px to provide a balanced space between the logo above and the main image below:
+        L O V E   R U N N I N G
+        Home   Gallery   Sign up
+        */
+        line-height: 25px;
+    }
+
+    /* 
+    #cover-image {
+        height: 500px;
+        background-size: cover;
+        background-position: center;
+        background: url(../img/form-bg.png) no-repeat;
+
+    } 
+    */
+
+    /* 
+    in mobile level the div#cover-text 
+    (contains: LOVE RUNNING DUBLIN DOCKLANDS & PHOENIX PARK)
+    will be flushed with the left screen edge
+    */
+    div#cover-text {
+        left: 0;
+    }
+
+    section#club-ethos {
+        width: 90%;
+        height: 1200px;
+        /* also center the section after make it 90% */
+        margin: 0 auto;
+    }
+
+    /* 
+    style the:
+    - two divs inside div#right-about 
+    - two divs inside div#left-about 
+    */
+    .left-about-heading,
+    .right-about-heading {
+        /* 
+        The width for these headings will be inherited from the parent section
+        */
+        width: inherit;
+    }
+
+    /* targeting the heading (h2) element for both divs */
+    .right-about-heading h2,
+    .left-about-heading h2 {
+        width: 100%;
+        text-align: center;
+
+    }
+
+    .right-about-heading p,
+    .left-about-heading p {
+        /* center the paragraphs like the headings */
+        text-align: center;
+        /* top/bottom => 0 and left/right padding => 20px */
+        padding: 0 20px;
+    }
+
+    /* Style the section#photos for the gallery page: */
+    section#photos {
+        column-count: 3;
+    }
+}
+
+/* 
+For mobile very small size (lower than the previous one) => 
+adding this #media just for the gallery page, the #photos section:
+We need to add one media query for just the section#photos in the gallery page
+to be displayed in just 2 columns with the small screen sizes:
+*/
+@media screen and (max-width: 800px) {
+    section#photos {
+        column-count: 2;
+    }
+}
+/*end media queries*/
+
+/* 
+IMPORTANT NOTES: 
+You can change the media queries by:
+- starting with the media query for the smallest screen (mobile)
+- then tablet 
+- then desktop 
+by following the mobile-first approach which is more recommended
+based on the reasons that was explained in our classes.
+
+Starting with mobile first means we will work also with min-width (besides max-width)
+you can refer to our in-class RWD examples for more clarifications 
+Check my GitHub Repo ==> fssd-css/css14.rwd/
+*/
